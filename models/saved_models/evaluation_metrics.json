@@ -1,0 +1,44 @@
+{
+    "Regression Metrics": {
+        "Linear Regression": {
+            "MAE": 0.5001,
+            "RMSE": 0.6504,
+            "R2": 0.9622
+        },
+        "Decision Tree": {
+            "MAE": 0.5987,
+            "RMSE": 0.7735,
+            "R2": 0.9466
+        },
+        "Random Forest": {
+            "MAE": 0.4288,
+            "RMSE": 0.5656,
+            "R2": 0.9714
+        }
+    },
+    "Feature Importance": {
+        "Engine Size": 0.1945,
+        "Cylinders": 0.0045,
+        "Horsepower": 0.6582,
+        "Vehicle Weight": 0.0208,
+        "Acceleration": 0.0017,
+        "Model Year": 0.0098,
+        "Fuel Type_Hybrid": 0.0125,
+        "Fuel Type_Petrol": 0.07,
+        "Fuel Type_Plug-in Hybrid": 0.0274,
+        "Transmission_Manual": 0.0006
+    },
+    "Feature Names": [
+        "Engine Size",
+        "Cylinders",
+        "Horsepower",
+        "Vehicle Weight",
+        "Acceleration",
+        "Model Year",
+        "Fuel Type_Hybrid",
+        "Fuel Type_Petrol",
+        "Fuel Type_Plug-in Hybrid",
+        "Transmission_Manual"
+    ],
+    "Best Model": "Random Forest"
+}
