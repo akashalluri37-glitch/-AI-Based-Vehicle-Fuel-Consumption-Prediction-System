@@ -29,6 +29,51 @@ This project delivers a complete Machine Learning workflow and interactive Strea
 
 ---
 
+## 🛰️ GPS Route Fuel Consumption Prediction & Navigation System
+
+In addition to standard cycle fuel consumption estimation, this application includes a physics-driven **GPS Route Fuel Consumption Predictor & Eco-Routing Engine**:
+
+```
+                  ┌───────────────────────────────────────────────────────────┐
+                  │              Vehicle Mechanical Specifications            │
+                  │   (Engine Size, Weight, Horsepower, Fuel Type, Gearbox)   │
+                  └─────────────────────────────┬─────────────────────────────┘
+                                                │
+                                                ▼
+                  ┌───────────────────────────────────────────────────────────┐
+                  │                 ML Regression Baseline Model              │
+                  │              (Random Forest / Decision Tree)              │
+                  └─────────────────────────────┬─────────────────────────────┘
+                                                │
+                                                ▼
+┌─────────────────────────────────┐   ┌───────────────────────────────────────────────────┐
+│       GPS Route Telemetry       ├──►│           Thermodynamic & Physical Engine         │
+│  • Latitude / Longitude Coords  │   │  • Elevation Gradient Resistance: F_g = mg sin(θ) │
+│  • Elevation Profile & Slopes   │   │  • Aerodynamic Drag: F_d = 0.5 ρ C_d A v²         │
+│  • Road Speeds & Traffic Congest│   │  • Hybrid Regenerative Downhill Braking           │
+└─────────────────────────────────┘   │  • Idle Fuel Burn Rate (Traffic Bottlenecks)      │
+                                      └─────────────────────────┬─────────────────────────┘
+                                                                │
+                                                                ▼
+                                      ┌───────────────────────────────────────────────────┐
+                                      │             Interactive GPS Dashboard             │
+                                      │  • OpenStreetMap Fuel Intensity Heatmaps          │
+                                      │  • Multi-Route Eco-Optimizer (Fast vs Green vs St)│
+                                      │  • Live GPS Telemetry Replay & Fuel Tank Gauge    │
+                                      │  • Custom CSV / GPX Telemetry Ingestion           │
+                                      └───────────────────────────────────────────────────┘
+```
+
+### Key GPS Features:
+1. **Physical Elevation & Road Slope Modeling ($F_g = m \cdot g \cdot \sin\theta$)**: Quantifies extra fuel burned on steep inclines and kinetic energy recouped on downhills.
+2. **Aerodynamic Drag Calculation ($F_d = \frac{1}{2} \rho C_d A v^2$)**: Models quadratic high-speed highway fuel penalties.
+3. **Interactive OpenStreetMap Visualization**: Color-codes route waypoints by instant fuel burn rate (L/100 km), road speed, altitude, or slope gradient.
+4. **Multi-Route Eco Optimizer**: Compares **🌿 Eco Green Route**, **⚡ Fast Highway Route**, and **🏙️ Shortest Urban Route** showing fuel savings ($) and $CO_2$ reductions.
+5. **Live GPS Trip Telemetry Simulator**: Virtual odometer replay slider displaying real-time speedometer, altitude, instant fuel rate, and fuel tank gauge.
+6. **Custom GPS Telemetry Ingestion**: Ingest custom CSV/GPX track files with latitude, longitude, elevation, and speed.
+
+---
+
 ## 🤖 Regression Models Performance Benchmark
 
 | Model Engine | MAE (L/100 km) | RMSE (L/100 km) | $R^2$ Score | Performance Rank |
@@ -62,9 +107,12 @@ vehicle_fuel_consumption_prediction/
 │   ├── download_data.py               # Automated data acquisition & physics fallback generator
 │   ├── data_loader.py                 # Feature engineering, scaling & train/test splits
 │   └── train_model.py                 # Model training, benchmarking & artifact serialization
+├── tests/
+│   └── test_gps_engine.py             # Unit & regression tests for GPS physics engine
 ├── utils/
-│   └── helpers.py                     # Rating categorizer, cost calculator & UI styles
-├── app.py                             # Interactive Streamlit Web Application
+│   ├── helpers.py                     # Rating categorizer, cost calculator & UI styles
+│   └── gps_engine.py                  # 🛰️ GPS route telemetry, physics engine & eco-routing
+├── app.py                             # Interactive Streamlit Web Application (Vehicle & GPS)
 ├── requirements.txt                   # Dependency list
 └── README.md                          # Comprehensive documentation
 ```
@@ -96,14 +144,14 @@ Train Linear Regression, Decision Tree, and Random Forest, outputting MAE, RMSE,
 python src/train_model.py
 ```
 
-### 5. Launch Jupyter Notebook
+### 5. Run Unit Tests (GPS & Telemetry Engine)
 ```bash
-jupyter notebook notebooks/vehicle_fuel_consumption.ipynb
+python -m unittest tests/test_gps_engine.py
 ```
 
 ### 6. Launch Interactive Streamlit Dashboard
 ```bash
-streamlit run app.py
+python -m streamlit run app.py
 ```
 
 ---
@@ -113,5 +161,6 @@ streamlit run app.py
 1. **Regression Analysis**: Understanding continuous target variable modeling, MAE, RMSE, and $R^2$ variance metrics.
 2. **Feature Preprocessing & Encoding**: Applying `StandardScaler` to numerical inputs and `OneHotEncoder` to categorical inputs (`Fuel Type`, `Transmission`).
 3. **Automotive Physics Connection**: Relating vehicle weight inertia, engine displacement pumping losses, and aerodynamics to fuel consumption.
-4. **Feature Importance**: Analyzing how vehicle weight and engine displacement dominate fuel consumption predictions.
-5. **Interactive Web Deployment**: Building an end-to-end interactive dashboard with fuel rating badges, MPG conversions, and financial cost calculators.
+4. **GPS Topography & Route Dynamics**: Understanding how elevation gain ($F_g = mg \sin\theta$) and traffic idling affect fuel economy on real roads.
+5. **Eco-Routing & Optimization**: Evaluating trade-offs between shortest routes, high-speed highway routes, and eco-friendly corridors.
+

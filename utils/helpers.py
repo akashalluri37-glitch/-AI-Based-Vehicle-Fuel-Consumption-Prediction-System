@@ -192,5 +192,65 @@ def get_custom_css():
         transform: translateY(-2px);
         box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4);
     }
+    /* GPS & Telemetry Dashboard Enhancements */
+    .telemetry-card {
+        background: linear-gradient(145deg, rgba(30, 41, 59, 0.85), rgba(15, 23, 42, 0.95));
+        border: 1px solid rgba(59, 130, 246, 0.25);
+        border-radius: 14px;
+        padding: 1.2rem;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        margin-bottom: 1rem;
+    }
+
+    .telemetry-val {
+        font-size: 1.8rem;
+        font-weight: 800;
+        color: #38bdf8;
+        font-family: 'JetBrains Mono', monospace, sans-serif;
+    }
+
+    .route-card {
+        background: rgba(17, 24, 39, 0.85);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 14px;
+        padding: 1.3rem;
+        transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .route-card:hover {
+        border-color: rgba(59, 130, 246, 0.6);
+        transform: translateY(-2px);
+    }
+
+    .route-recommended {
+        border: 2px solid #10b981 !important;
+        box-shadow: 0 0 20px rgba(16, 185, 129, 0.25);
+    }
+
+    .pulse-dot {
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: #10b981;
+        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+        animation: pulse 1.6s infinite;
+        margin-right: 6px;
+    }
+
+    @keyframes pulse {
+        0% {
+            transform: scale(0.95);
+            box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+        }
+        70% {
+            transform: scale(1);
+            box-shadow: 0 0 0 10px rgba(16, 185, 129, 0);
+        }
+        100% {
+            transform: scale(0.95);
+            box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+        }
+    }
     </style>
     """
