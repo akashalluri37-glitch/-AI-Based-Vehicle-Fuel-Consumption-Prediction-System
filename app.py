@@ -12,7 +12,7 @@ from utils.helpers import (
     get_efficiency_category, 
     calculate_annual_fuel_cost, 
     get_custom_css
-)git init
+)
 from utils.gps_engine import (
     PRESET_ROUTES,
     generate_route_telemetry,
