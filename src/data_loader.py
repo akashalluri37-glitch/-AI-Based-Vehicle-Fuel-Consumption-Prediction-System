@@ -170,7 +170,7 @@ def get_train_test_data(test_size=0.2, random_state=42):
     Applies StandardScaler and OneHotEncoder without data leakage.
 
     Returns:
-      - X_train, X_test: Original unscaled feature DataFrames (useful for tree inspection)
+      - X_train(80%), X_test(20%): Original unscaled feature DataFrames (useful for tree inspection)
       - X_train_proc, X_test_proc: Transformed numerical NumPy matrices ready for ML modeling
       - y_train, y_test: Ground truth fuel consumption target splits (L/100 km)
       - preprocessor: The fitted ColumnTransformer pipeline
