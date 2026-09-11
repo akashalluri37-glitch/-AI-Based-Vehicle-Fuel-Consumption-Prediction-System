@@ -164,3 +164,5 @@ python -m streamlit run app.py
 4. **GPS Topography & Route Dynamics**: Understanding how elevation gain ($F_g = mg \sin\theta$) and traffic idling affect fuel economy on real roads.
 5. **Eco-Routing & Optimization**: Evaluating trade-offs between shortest routes, high-speed highway routes, and eco-friendly corridors.
 
+#   g r o u p - p r o j e c t  
+ 
